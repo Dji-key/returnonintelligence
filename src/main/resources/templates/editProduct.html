@@ -3,35 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Update</title>
-    <style>
-        .header {
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-        }
-        .table {
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            font-size: 14px;
-            border-collapse: collapse;
-            text-align: center;
-            width: 300px;
-            border: none;
-        }
-
-        .table th {
-            display: none;
-        }
-
-        .table th,
-        .table td {
-            border-style: solid;
-            border-width: 0 1px 1px 0;
-            border-color: white;
-            padding: 5px;
-        }
-
-        .table td {
-            background: #D8E6F3;
-        }
-    </style>
+    <link rel="stylesheet" href="/pretty.css">
 </head>
 <body>
 
@@ -39,23 +11,17 @@
 
 <form action="#" th:action="@{/editProduct}" th:object="${product}" method="post">
     <table class="table">
-        <tr>
+        <tr style="display: none">
             <th>ID:</th>
-            <th>
-                <input type="text" th:field="*{id}" readonly>
-            </th>
+            <th><input type="text" th:field="*{id}" readonly></th>
         </tr>
         <tr>
             <td>Name:</td>
-            <td>
-                <input type="text" th:field="*{name}"/>
-            </td>
+            <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
             <td>Description:</td>
-            <td>
-                <textarea type="text" th:field="*{description}"/>
-            </td>
+            <td><textarea type="text" th:field="*{description}"/></td>
         </tr>
         <tr>
             <td colspan="2">
