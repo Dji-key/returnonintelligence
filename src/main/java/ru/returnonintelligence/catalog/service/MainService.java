@@ -1,16 +1,15 @@
 package ru.returnonintelligence.catalog.service;
 
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.returnonintelligence.catalog.entity.Category;
 import ru.returnonintelligence.catalog.entity.Product;
 import ru.returnonintelligence.catalog.repository.CategoryRepository;
 import ru.returnonintelligence.catalog.repository.ProductRepository;
 import ru.returnonintelligence.catalog.repository.ProductSpecs;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +17,7 @@ import java.util.Set;
 
 
 @Service
+@Transactional
 public class MainService {
 
     @Autowired
