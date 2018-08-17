@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CRUD catalog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Catalog</title>
+    <style>
+        table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td:first-child {
+            background: #AFCDE7;
+            color: white;
+            padding: 10px 20px;
+        }
+        th, td {
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: white;
+        }
+        td {
+            background: #D8E6F3;
+        }
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        button31 {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            width: 3em;
+            height: 3em;
+            border-radius: 100%;
+            outline: none;
+            background: #ddd;
+            box-shadow: 0 1px rgba(0,0,0,.1) inset, 0 1px #fff;
+        }
+        button31:after, button31:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 7.5%;
+            left: -15%;
+            right: 0;
+            bottom: 0;
+            width: 30%;
+            height: 10%;
+            margin: auto;
+            background: #999;
+            box-shadow: 0 1px rgba(0,0,0,.1) inset, 0 1px #fff;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        button31:before {
+            left: 15%;
+            -webkit-transform: rotate(315deg);
+            transform: rotate(315deg);
+        }
+        button31:hover, button31:focus {
+            background: #e35d31;
+            box-shadow: none;
+        }
+        button31:hover:after, button31:hover:before {
+            background: #fff;
+            box-shadow: none;
+        }
+        button31:focus {
+            background-image:
+                    linear-gradient(120deg, transparent 45%, #e35d31 45%, #e35d31 55%, transparent 55%),
+                    radial-gradient(transparent 20%, #fff 20%, #fff 30%, transparent 30%);
+            -webkit-animation: rotate31 1s linear infinite forwards;
+            animation: rotate31 1s linear infinite forwards;
+        }
+        button31:focus:after, button31:focus:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: calc(-30% - 4px/2);
+            left: 4px;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-left: 8px solid #fff;
+            border-bottom: 4px solid transparent;
+            background: transparent;
+            box-shadow: none;
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        button31:focus:before {
+            top: calc(30% + 4px/2);
+            left: -4px;
+            border-left: none;
+            border-right: 8px solid #fff;
+        }
+        @-webkit-keyframes rotate31 {
+            100% {-webkit-transform: rotate(360deg);}
+        }
+        @keyframes rotate31 {
+            100% {transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+<a href="/addProduct" class="button">Create</a>
+<a href="/addCategory" class="button">Add category</a>
+<div>
+    <form th:action="@{/findProduct}" method="post">
+        <input type="text" name="name">
+        <input type="text" name="category">
+        <input class="button31" type="submit" value="Submit"/>
+    </form>
+</div>
+<div class="table">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Categories</td>
+        </tr>
+        <th:block th:each="product : ${products}">
+            <tr>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td>
+                    <th:block th:each="category : ${product.getCategories()}">
+                        <span th:text="${category.name}"></span>
+                    </th:block>
+                </td>
+
+                <td><a th:href="@{/editProduct(id=${product.id})}" title="Edit">&rsaquo;</a></td>
+                <td><a th:href="@{/deleteProduct(id=${product.id})}" title="Delete">&times;</a></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

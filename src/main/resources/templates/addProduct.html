@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+
+<h2>Add new product</h2>
+
+<form action="#" th:action="@{/addProduct}" th:object="${product}" method="post">
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p>Description: <input type="text" th:field="*{description}"/></p>
+
+    <th:block th:each="category : ${categories}">
+        <input type="checkbox" name="categoryCheckbox" th:value="${category.id}">
+        <label th:text="${category.name}"></label>
+    </th:block>
+
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+
+</body>
+</html>

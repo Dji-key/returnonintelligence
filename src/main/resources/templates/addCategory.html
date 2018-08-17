@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new category</title>
+    <style>
+        .hint {
+            -webkit-animation: FadeOut 1s ease 1s forwards;
+            -moz-animation: FadeOut 1s ease 1s forwards;
+            -o-animation: FadeOut 1s ease 1s forwards;
+            animation:  FadeOut 1s ease 1s forwards;
+        }
+        @keyframes FadeOut {
+            0%   { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+<h2>Add Category</h2>
+<form action="#" th:action="@{/addCategory}" th:object="${category}" method="post">
+    <p>Category: <input type="text" th:field="*{name}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<p class="hint" th:text="${message}"/>
+</body>
+</html>
