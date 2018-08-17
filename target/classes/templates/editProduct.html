@@ -3,26 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Update</title>
+    <style>
+        .header {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        }
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            border-collapse: collapse;
+            text-align: center;
+            width: 300px;
+            border: none;
+        }
+
+        .table th {
+            background: #AFCDE7;
+            color: white;
+            padding: 10px 20px;
+            display: none;
+        }
+
+        .table th,
+        .table td {
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: white;
+            padding: 5px;
+        }
+
+        .table td {
+            background: #D8E6F3;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Update existed product</h2>
+<h2 class="header">Update existing product</h2>
 
 <form action="#" th:action="@{/editProduct}" th:object="${product}" method="post">
-    <p>ID: <input type="text" th:field="*{id}" readonly></p>
-    <p>Name: <input type="text" th:field="*{name}"/></p>
-    <p>Description: <input type="text" th:field="*{description}"/></p>
-
-    <th:block th:each="category : ${otherCategories}">
-        <input type="checkbox" name="otherCategories" th:value="${category.id}">
-        <label th:text="${category.name}"></label>
-    </th:block>
-    <th:block th:each="category : ${productCategories}">
-        <input type="checkbox" name="productCategories" th:value="${category.id}" checked>
-        <label th:text="${category.name}"></label>
-    </th:block>
-
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    <table class="table">
+        <tr>
+            <th>ID:</th>
+            <th>
+                <input type="text"  th:field="*{id}" readonly>
+            </th>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" th:field="*{name}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>
+                <textarea type="text" th:field="*{description}"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <th:block th:each="category : ${otherCategories}">
+                    <nobr>
+                        <input type="checkbox" name="otherCategories" th:value="${category.id}">
+                        <label th:text="${category.name}"></label>
+                    </nobr>
+                </th:block>
+                <th:block th:each="category : ${productCategories}">
+                    <nobr>
+                        <input type="checkbox" name="productCategories" th:value="${category.id}" checked>
+                        <label th:text="${category.name}"></label>
+                    </nobr>
+                </th:block>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit"/> <input type="reset" value="Reset"/>
+            </td>
+        </tr>
+    </table>
 </form>
 
 </body>
