@@ -112,3 +112,13 @@ a.fn {
     top: -1px;
     left: 5px;
 }
+ .hint {
+     -webkit-animation: FadeOut 1s ease 1s forwards;
+     -moz-animation: FadeOut 1s ease 1s forwards;
+     -o-animation: FadeOut 1s ease 1s forwards;
+     animation:  FadeOut 1s ease 1s forwards;
+ }
+@keyframes FadeOut {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
